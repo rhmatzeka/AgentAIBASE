@@ -1,4 +1,4 @@
-# Onchain Agent Powered by AgentKit
+# Onchain Agent AI Powered by AgentKit 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with `create-onchain-agent`.  
 
