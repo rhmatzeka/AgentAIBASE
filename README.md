@@ -57,3 +57,7 @@ You need Node.js 18+, an [OpenAI API key](https://platform.openai.com/api-keys),
 
 - [AgentKit docs](https://docs.cdp.coinbase.com/agentkit/docs/welcome)
 - [Next.js docs](https://nextjs.org/docs)
+
+## License
+
+Released under the [MIT License](LICENSE).
