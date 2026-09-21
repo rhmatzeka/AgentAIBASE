@@ -1,67 +1,59 @@
-# Onchain Agent AI Powered by AgentKit 
+# AgentAIBASE
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with `create-onchain-agent`.  
+A chat app where you talk to an AI agent that can act on the blockchain. You type a request in plain English, and the agent can check balances, move tokens, read prices, and more on **Base Sepolia** (a free test network).
 
-It integrates [AgentKit](https://github.com/coinbase/agentkit) to provide AI-driven interactions with on-chain capabilities.
+It is built on Coinbase's [AgentKit](https://github.com/coinbase/agentkit) starter template, so it is a good base for your own on-chain agent.
 
-## Getting Started
+## What the agent can do
 
-First, install dependencies:
+- Use its own **CDP smart wallet** (created for you)
+- Send and read **ERC-20** tokens, wrap ETH into **WETH**
+- Read live prices from the **Pyth** oracle
+- Call Coinbase Developer Platform (CDP) APIs, including the testnet faucet
+- Pay for APIs with **x402**
 
-```sh
-npm install
-```
+## Tech stack
 
-Then, configure your environment variables:
+Next.js, TypeScript, Tailwind CSS, LangChain + LangGraph, OpenAI (`gpt-4o-mini`), Coinbase AgentKit, viem, wagmi
 
-```sh
-mv .env.local .env
-```
+## Getting started
 
-Run the development server:
+You need Node.js 18+, an [OpenAI API key](https://platform.openai.com/api-keys), and a [CDP API key](https://portal.cdp.coinbase.com/).
 
-```sh
-npm run dev
-```
+1. Install dependencies:
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the project.
+   ```sh
+   npm install
+   ```
 
+2. Create a `.env` file in the project root:
 
-## Configuring Your Agent
+   ```env
+   OPENAI_API_KEY=your_openai_key
+   CDP_API_KEY_ID=your_cdp_key_id
+   CDP_API_KEY_SECRET=your_cdp_key_secret
+   CDP_WALLET_SECRET=your_cdp_wallet_secret
+   NETWORK_ID=base-sepolia
+   ```
 
-You can [modify your configuration](https://github.com/coinbase/agentkit/tree/main/typescript/agentkit#usage) of the agent. By default, your agentkit configuration occurs in the `/api/agent/prepare-agentkit.ts` file, and agent instantiation occurs in the `/api/agent/create-agent.ts` file.
+   `RPC_URL` and `PAYMASTER_URL` are optional.
 
-### 1. Select Your LLM  
-Modify the OpenAI model instantiation to use the model of your choice.
+3. Start the app and open http://localhost:3000:
 
-### 2. Select Your Wallet Provider  
-AgentKit requires a **Wallet Provider** to interact with blockchain networks.
+   ```sh
+   npm run dev
+   ```
 
-### 3. Select Your Action Providers  
-Action Providers define what your agent can do. You can use built-in providers or create your own.
+## Where to change things
 
----
+| What | File |
+| --- | --- |
+| Wallet and actions the agent can use | `app/api/agent/prepare-agentkit.ts` |
+| AI model and system prompt | `app/api/agent/create-agent.ts` |
+| Chat API endpoint | `app/api/agent/route.ts` |
+| Chat page | `app/page.tsx` |
 
-## Next Steps
+## Learn more
 
-- Explore the AgentKit README: [AgentKit Documentation](https://github.com/coinbase/agentkit)
-- Learn more about available Wallet Providers & Action Providers.
-- Experiment with custom Action Providers for your specific use case.
-
----
-
-## Learn More
-
-- [Learn more about CDP](https://docs.cdp.coinbase.com/)
-- [Learn more about AgentKit](https://docs.cdp.coinbase.com/agentkit/docs/welcome)
-- [Learn more about Next.js](https://nextjs.org/docs)
-- [Learn more about Tailwind CSS](https://tailwindcss.com/docs)
-
----
-
-## Contributing
-
-Interested in contributing to AgentKit? Follow the contribution guide:
-
-- [Contribution Guide](https://github.com/coinbase/agentkit/blob/main/CONTRIBUTING.md)
-- Join the discussion on [Discord](https://discord.gg/CDP)
+- [AgentKit docs](https://docs.cdp.coinbase.com/agentkit/docs/welcome)
+- [Next.js docs](https://nextjs.org/docs)
